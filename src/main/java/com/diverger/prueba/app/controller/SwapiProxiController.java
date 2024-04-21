@@ -2,9 +2,7 @@ package com.diverger.prueba.app.controller;
 
 import com.diverger.prueba.app.model.PersonInfo;
 import com.diverger.prueba.app.service.SwapiProxyService;
-import io.lettuce.core.dynamic.annotation.Param;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +18,7 @@ public class SwapiProxiController {
 
     @GetMapping("/person-info")
     @ResponseBody()
-    public PersonInfo getPersonInfo(@Param("name") String name) {
+    public PersonInfo getPersonInfo(String name) {
         return swapiProxyService.getPersonInfo(name);
     }
 
