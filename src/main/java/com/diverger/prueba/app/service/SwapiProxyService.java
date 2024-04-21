@@ -22,7 +22,7 @@ public class SwapiProxyService {
     private final SwapiProxiTransformer transformer;
 
     public PersonInfo getPersonInfo(String name) {
-        Search<Person> search = apiClient.getResourceBySearch(Person.class, name, new PeopleSearchTypeRef()).block();
+        Search<Person> search = apiClient.getResourceBySearch(Person.class, name, new PersonSearchTypeRef()).block();
         assert search != null;
         List<Person> personList = search.getResults();
         Integer peopleSearchCount = search.getCount();

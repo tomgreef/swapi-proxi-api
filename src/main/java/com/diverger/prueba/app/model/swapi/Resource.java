@@ -2,11 +2,13 @@ package com.diverger.prueba.app.model.swapi;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public abstract class Resource implements ResourceSchema {
     @NotNull
     @Size(max = 255)
