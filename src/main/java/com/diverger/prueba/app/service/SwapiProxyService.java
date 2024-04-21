@@ -44,7 +44,9 @@ public class SwapiProxyService {
         transformer.mapPlanetToPersonInfo(planet, personInfo);
 
         Vehicle vehicle = getFastestVehicle(idsFromUrls(person.getVehicles()), idsFromUrls(person.getStarships()));
-        transformer.mapVehicleToPersonInfo(vehicle, personInfo);
+        if (vehicle != null) {
+            transformer.mapVehicleToPersonInfo(vehicle, personInfo);
+        }
 
         List<Film> films = getFilms(idsFromUrls(person.getFilms()));
         transformer.mapFilmsToPersonInfo(films, personInfo);
