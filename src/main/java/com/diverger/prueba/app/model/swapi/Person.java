@@ -1,15 +1,19 @@
-package com.diverger.prueba.app.model;
+package com.diverger.prueba.app.model.swapi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.core.ParameterizedTypeReference;
 
 
 @Getter
 @Setter
-public class People {
+public class Person extends Resource implements SearchTypeReference<Person> {
 
     @NotNull
     @Size(max = 255)
@@ -25,18 +29,22 @@ public class People {
 
     @NotNull
     @Size(max = 255)
+    @JsonProperty("hair_color")
     private String hairColor;
 
     @NotNull
     @Size(max = 255)
+    @JsonProperty("skin_color")
     private String skinColor;
 
     @NotNull
     @Size(max = 255)
+    @JsonProperty("eye_color")
     private String eyeColor;
 
     @NotNull
     @Size(max = 255)
+    @JsonProperty("birth_year")
     private String birthYear;
 
     @NotNull
@@ -59,16 +67,13 @@ public class People {
     @NotNull
     private List<@Size(max = 255) String> starships;
 
-    @NotNull
-    @Size(max = 255)
-    private String url;
+    public ParameterizedTypeReference getParameterizedSearchTypeReference() {
+        return new ParameterizedTypeReference<Search<Person>>() {
+        };
+    }
 
-    @NotNull
-    @Size(max = 255)
-    private String created;
-
-    @NotNull
-    @Size(max = 255)
-    private String edited;
-
+    @Override
+    public String getResourceName() {
+        return "people";
+    }
 }

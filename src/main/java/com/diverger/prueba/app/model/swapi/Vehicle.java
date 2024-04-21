@@ -1,15 +1,18 @@
-package com.diverger.prueba.app.model;
+package com.diverger.prueba.app.model.swapi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter
 @Setter
-public class Vehicle {
+public class Vehicle extends Resource {
 
     @NotNull
     @Size(max = 255)
@@ -45,6 +48,7 @@ public class Vehicle {
 
     @NotNull
     @Size(max = 255)
+    @JsonProperty("max_atmosphering_speed")
     private String maxAtmospheringSpeed;
 
     @NotNull
@@ -61,16 +65,8 @@ public class Vehicle {
     @NotNull
     private List<@Size(max = 255) String> pilots;
 
-    @NotNull
-    @Size(max = 255)
-    private String url;
-
-    @NotNull
-    @Size(max = 255)
-    private String created;
-
-    @NotNull
-    @Size(max = 255)
-    private String edited;
-
+    @Override
+    public String getResourceName() {
+        return "vehicles";
+    }
 }

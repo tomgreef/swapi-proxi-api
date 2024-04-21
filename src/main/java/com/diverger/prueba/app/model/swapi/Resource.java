@@ -1,21 +1,22 @@
-package com.diverger.prueba.app.model;
+package com.diverger.prueba.app.model.swapi;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class FilmDTO {
+public abstract class Resource implements ResourceSchema {
+    @NotNull
+    @Size(max = 255)
+    private String url;
 
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String created;
 
     @NotNull
     @Size(max = 255)
-    private String releaseDate;
-
+    private String edited;
 }
