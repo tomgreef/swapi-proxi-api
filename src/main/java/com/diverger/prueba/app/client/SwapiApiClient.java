@@ -4,6 +4,7 @@ import com.diverger.prueba.app.exception.ResourceNameException;
 import com.diverger.prueba.app.model.swapi.Resource;
 import com.diverger.prueba.app.model.swapi.Search;
 import com.diverger.prueba.app.model.swapi.SearchTypeReference;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,6 +19,7 @@ public class SwapiApiClient {
         this.webClient = WebClient.create("https://swapi.dev/api/");
     }
 
+    @Cacheable(value = "search", key = "#resourceClass.getName() + #search")
     public <T extends Resource & SearchTypeReference<T>> Mono<Search<T>> getResourceBySearch(Class<T> resourceClass, String search, ParameterizedTypeReference<Search<T>> typeRef) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
@@ -28,6 +30,7 @@ public class SwapiApiClient {
                 .bodyToMono(typeRef);
     }
 
+    @Cacheable(value = "resource", key = "#resourceClass.getName() + #resourceId")
     public <T extends Resource> Mono<T> getResourceById(Class<T> resourceClass, Integer resourceId) {
         return webClient.get()
                 .uri(getResourceName(resourceClass) + "/" + resourceId)
