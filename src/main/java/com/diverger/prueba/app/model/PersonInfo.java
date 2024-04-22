@@ -3,7 +3,9 @@ package com.diverger.prueba.app.model;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,6 +36,5 @@ public class PersonInfo {
 
     @NotNull
     @Valid
-    private List<FilmDTO> films;
-
+    private List<Film> films;
 }
