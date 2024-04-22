@@ -6,12 +6,14 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Planet extends Resource {
 
     @NotNull

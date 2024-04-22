@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Objects;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,7 +15,8 @@ import org.springframework.core.ParameterizedTypeReference;
 
 @Getter
 @Setter
-public class Person extends Resource implements SearchTypeReference<Person> {
+@EqualsAndHashCode(callSuper = true)
+public class Person extends Resource {
 
     @NotNull
     @Size(max = 255)
@@ -66,11 +69,6 @@ public class Person extends Resource implements SearchTypeReference<Person> {
 
     @NotNull
     private List<@Size(max = 255) String> starships;
-
-    public ParameterizedTypeReference getParameterizedSearchTypeReference() {
-        return new ParameterizedTypeReference<Search<Person>>() {
-        };
-    }
 
     @Override
     public String getResourceName() {

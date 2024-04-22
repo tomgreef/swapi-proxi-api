@@ -6,12 +6,14 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 public class Film extends Resource {
 
     @NotNull
@@ -54,7 +56,7 @@ public class Film extends Resource {
 
     @NotNull
     private List<@Size(max = 255) String> species;
-    
+
     public String getResourceName() {
         return "films";
     }

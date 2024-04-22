@@ -22,7 +22,7 @@ docker build -t swapi-proxi-api .
 Start your application with the following command:
 
 ```
-docker run -d -p 8081:8080 swapi-proxi-api 
+docker run -d -p 8081:8080 --name swapi-proxi-api swapi-proxi-api 
 ```
 
 Check the swagger endpoint at `http://localhost:8081/swagger-ui/index.html`
