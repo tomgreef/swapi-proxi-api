@@ -1,41 +1,28 @@
-# App
-
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
-Feel free to contact us for further questions.
-
 ## Development
 
-During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
-added in the VM options of the Run Configuration after enabling this property in "Modify options". Create your own
-`application-local.yml` file to override settings for development.
+During development it is recommended to use the profile `local`. Create your own `application-local.yml` file to
+override settings for development.
 
-Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and enable annotation processing -
-[learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
+After starting the application it is accessible under `http://localhost:8080/swagger-ui/index.html`.
 
-After starting the application it is accessible under `localhost:8080`.
+## Build and run in docker
 
-## Build
-
-The application can be built using the following command:
+The application jar can be built using the following command:
 
 ```
 mvnw clean package
 ```
 
-Start your application with the following command - here with the profile `production`:
+Then, to build the docker image, run the following command:
 
 ```
-java -Dspring.profiles.active=production -jar ./target/app-0.0.1-SNAPSHOT.jar
+docker build -t swapi-proxi-api .  
 ```
 
-If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as
-environment variable when running the container.
+Start your application with the following command:
 
 ```
-mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=com.diverger.prueba/app
+docker run -d -p 8081:8080 swapi-proxi-api 
 ```
 
-## Further readings
-
-* [Maven docs](https://maven.apache.org/guides/index.html)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
+Check the swagger endpoint at `http://localhost:8081/swagger-ui/index.html`
